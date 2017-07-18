@@ -3,8 +3,7 @@
   "project": {
     "name": "claim-lookup"
   },
-  "apps": [
-    {
+  "apps": [{
       "root": "src",
       "outDir": "dist",
       "assets": [
