@@ -1,0 +1,66 @@
+<div>
+    <div>
+        <h1>Claim Lookup</h1>
+
+        <div class="col-md-6">
+            The following are searches to retrieve claim verification information.
+            <ul>
+                <li>Use Claim Number only</li>
+                <li>Last Name, First Name and Injury Date</li>
+                <li>Worker's SSN and Injury Date</li>
+            </ul>
+
+            <div class="row">
+                <div class="col-md-3"><label>Claim Number: </label></div>
+                <div class="col-md-3"><input [(ngModel)]="claimNumber" placeholder="Claim Number"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Last Name: </label></div>
+                <div class="col-md-3"><input [(ngModel)]="lastName" placeholder="Last Name"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>First Name: </label></div>
+                <div class="col-md-3"><input [(ngModel)]="firstName" placeholder="First Name"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Worker's SSN: </label></div>
+                <div class="col-md-3"><input [(ngModel)]="ssn" placeholder="SSN"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><label>Injury Date: </label></div>
+                <div class="col-md-3"><input [(ngModel)]="injuryDate" placeholder="Injury Date"></div>
+            </div>
+            
+            <Button class="btn btn-primary" (click)="lookupClaim(claimNumber)">Lookup Claim</Button> 
+            
+
+            <div class="col-md-8" *ngIf="_foundClaim">
+                <div *ngIf="_foundClaim.ClaimStatus != 'not found'">
+                    <table class="table table-striped">
+                        <thead>
+                            <td>Claim Number</td>
+                            <td>Status</td>
+                            <td>Last</td>
+                            <td>First</td>
+                            <td>Injury Date</td>
+                            <td>Employer</td>
+                        </thead>
+                        <tr>
+                            <td>{{_foundClaim.ClaimNumber}}</td>
+                            <!--<td>{{_foundClaim.ClaimStatus}}</td>-->
+
+                            <td>{{_foundClaim.LastName}}</td>
+                            <td>{{_foundClaim.FirstName}}</td>
+                            <td>{{_foundClaim.DateOfInjury}}</td>
+                            <td>{{_foundClaim.Employer}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="_foundClaim.ClaimStatus == 'not found'">
+                <br/><br/> Claim {{_foundClaim.ClaimNumber}} was not found!
+            </div>
+
+        </div>
+    </div>
+</div>
